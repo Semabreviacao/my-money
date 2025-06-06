@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import VoiceRecorder from "@/components/VoiceRecorder";
 import FinancialSummary from "@/components/FinancialSummary";
@@ -6,6 +7,8 @@ import QuickFilters from "@/components/QuickFilters";
 import TransactionList from "@/components/TransactionList";
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50">
       <Header />
@@ -41,22 +44,34 @@ const Index = () => {
           <div className="bg-white rounded-lg p-6 shadow-sm border">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Ações Rápidas</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              <button className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group">
+              <button 
+                onClick={() => navigate('/reports')}
+                className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group"
+              >
                 <div className="text-orange-600 font-medium text-sm group-hover:text-orange-700">
                   📊 Relatório
                 </div>
               </button>
-              <button className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group">
+              <button 
+                onClick={() => navigate('/export')}
+                className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group"
+              >
                 <div className="text-orange-600 font-medium text-sm group-hover:text-orange-700">
                   📁 Exportar
                 </div>
               </button>
-              <button className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group">
+              <button 
+                onClick={() => navigate('/goals')}
+                className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group"
+              >
                 <div className="text-orange-600 font-medium text-sm group-hover:text-orange-700">
                   🎯 Nova Meta
                 </div>
               </button>
-              <button className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group">
+              <button 
+                onClick={() => navigate('/reminders')}
+                className="p-3 bg-orange-50 hover:bg-orange-100 rounded-lg text-center transition-colors group"
+              >
                 <div className="text-orange-600 font-medium text-sm group-hover:text-orange-700">
                   🔔 Lembretes
                 </div>

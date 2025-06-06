@@ -6,32 +6,32 @@ const FinancialSummary = () => {
   const summaryData = [
     {
       title: "Entradas",
-      value: "R$ 3.250,00",
-      change: "+12%",
+      value: "R$ 0,00",
+      change: "0%",
       icon: TrendingUp,
       color: "text-green-600",
       bgColor: "bg-green-50",
     },
     {
       title: "Saídas",
-      value: "R$ 2.180,00",
-      change: "-5%",
+      value: "R$ 0,00",
+      change: "0%",
       icon: TrendingDown,
       color: "text-red-600",
       bgColor: "bg-red-50",
     },
     {
       title: "Saldo",
-      value: "R$ 1.070,00",
-      change: "+23%",
+      value: "R$ 0,00",
+      change: "0%",
       icon: DollarSign,
       color: "text-orange-600",
       bgColor: "bg-orange-50",
     },
     {
       title: "Metas",
-      value: "3 ativas",
-      change: "2 próximas",
+      value: "0 ativas",
+      change: "Nenhuma criada",
       icon: Target,
       color: "text-blue-600",
       bgColor: "bg-blue-50",
@@ -53,7 +53,7 @@ const FinancialSummary = () => {
           <CardContent>
             <div className="text-2xl font-bold">{item.value}</div>
             <p className={`text-xs ${item.color}`}>
-              {item.change} vs mês anterior
+              {item.change}
             </p>
           </CardContent>
         </Card>
