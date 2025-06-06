@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,6 +20,31 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Orange/Terracotta palette for M&M Money
+				orange: {
+					50: '#fff7ed',
+					100: '#ffedd5',
+					200: '#fed7aa',
+					300: '#fdba74',
+					400: '#fb923c',
+					500: '#f97316', // Main orange
+					600: '#ea580c', // Medium orange
+					700: '#c2410c', // Burnt orange
+					800: '#9a3412', // Terracotta
+					900: '#7c2d12',
+				},
+				terracotta: {
+					50: '#fdf4f3',
+					100: '#fce7e4',
+					200: '#f9d2ce',
+					300: '#f4b5ac',
+					400: '#ec8b7a',
+					500: '#e16b50',
+					600: '#cd5334',
+					700: '#ab4228',
+					800: '#8d3925',
+					900: '#753325',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -63,6 +89,11 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
+			backgroundImage: {
+				'gradient-orange': 'linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%)',
+				'gradient-terracotta': 'linear-gradient(135deg, #e16b50 0%, #cd5334 50%, #ab4228 100%)',
+				'gradient-sunset': 'linear-gradient(135deg, #ff7849 0%, #ff5722 50%, #d84315 100%)',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -84,11 +115,42 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'scale-in': {
+					'0%': {
+						transform: 'scale(0.95)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'scale(1)',
+						opacity: '1'
+					}
+				},
+				'pulse-orange': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.7'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'scale-in': 'scale-in 0.2s ease-out',
+				'pulse-orange': 'pulse-orange 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
 			}
 		}
 	},
