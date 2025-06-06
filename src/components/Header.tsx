@@ -1,5 +1,5 @@
 
-import { Mic, Search, Settings } from "lucide-react";
+import { Search, Settings, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -8,12 +8,11 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-              <span className="text-white font-bold text-xl">M&M</span>
+            <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/30">
+              <Wallet className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-white font-bold text-xl">My Money</h1>
-              <p className="text-orange-100 text-sm">Seu dinheiro na ponta da língua</p>
+              <h1 className="text-white font-bold text-2xl">My Money</h1>
             </div>
           </div>
           
