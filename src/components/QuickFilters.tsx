@@ -3,26 +3,38 @@ import { useState } from "react";
 import { Filter, Calendar, Tag, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useTransactions } from "@/hooks/useTransactions";
 
 const QuickFilters = () => {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const { filterTransactions } = useTransactions();
 
   const filterOptions = [
-    { id: 'hoje', label: 'Hoje', icon: Calendar },
-    { id: 'semana', label: 'Esta Semana', icon: Calendar },
-    { id: 'pix', label: '#pix', icon: Tag },
-    { id: 'alimentacao', label: '#alimentação', icon: Tag },
-    { id: 'entrada', label: 'Entradas', icon: DollarSign },
-    { id: 'saida', label: 'Saídas', icon: DollarSign },
-    { id: 'meta', label: 'Metas', icon: DollarSign },
+    { id: 'hoje', label: 'Hoje', icon: Calendar, type: 'period' },
+    { id: 'semana', label: 'Esta Semana', icon: Calendar, type: 'period' },
+    { id: 'pix', label: '#pix', icon: Tag, type: 'tag' },
+    { id: 'mercado', label: '#mercado', icon: Tag, type: 'tag' },
+    { id: 'entrada', label: 'Entradas', icon: DollarSign, type: 'type' },
+    { id: 'saida', label: 'Saídas', icon: DollarSign, type: 'type' },
+    { id: 'meta', label: 'Metas', icon: DollarSign, type: 'type' },
   ];
 
   const toggleFilter = (filterId: string) => {
-    setActiveFilters(prev => 
-      prev.includes(filterId) 
-        ? prev.filter(id => id !== filterId)
-        : [...prev, filterId]
-    );
+    const newFilters = activeFilters.includes(filterId) 
+      ? activeFilters.filter(id => id !== filterId)
+      : [...activeFilters, filterId];
+    
+    setActiveFilters(newFilters);
+    
+    // Aplicar filtros (em uma implementação completa, isso passaria para o componente pai)
+    const filterConfig = {
+      type: newFilters.find(f => ['entrada', 'saida', 'meta'].includes(f)),
+      period: newFilters.find(f => ['hoje', 'semana'].includes(f)),
+      tags: newFilters.filter(f => ['pix', 'mercado'].includes(f)),
+    };
+    
+    const filtered = filterTransactions(filterConfig);
+    console.log('Transações filtradas:', filtered);
   };
 
   return (

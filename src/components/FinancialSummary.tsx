@@ -1,37 +1,48 @@
 
 import { TrendingUp, TrendingDown, DollarSign, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTransactions } from "@/hooks/useTransactions";
 
 const FinancialSummary = () => {
+  const { getSummary } = useTransactions();
+  const summary = getSummary();
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(value);
+  };
+
   const summaryData = [
     {
       title: "Entradas",
-      value: "R$ 0,00",
-      change: "0%",
+      value: formatCurrency(summary.totalIncome),
+      change: summary.totalIncome > 0 ? `+${formatCurrency(summary.totalIncome)}` : "0%",
       icon: TrendingUp,
       color: "text-green-600",
       bgColor: "bg-green-50",
     },
     {
       title: "Saídas",
-      value: "R$ 0,00",
-      change: "0%",
+      value: formatCurrency(summary.totalExpenses),
+      change: summary.totalExpenses > 0 ? `-${formatCurrency(summary.totalExpenses)}` : "0%",
       icon: TrendingDown,
       color: "text-red-600",
       bgColor: "bg-red-50",
     },
     {
       title: "Saldo",
-      value: "R$ 0,00",
-      change: "0%",
+      value: formatCurrency(summary.balance),
+      change: summary.balance >= 0 ? "Positivo" : "Negativo",
       icon: DollarSign,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
+      color: summary.balance >= 0 ? "text-green-600" : "text-red-600",
+      bgColor: summary.balance >= 0 ? "bg-green-50" : "bg-red-50",
     },
     {
       title: "Metas",
-      value: "0 ativas",
-      change: "Nenhuma criada",
+      value: `${summary.activeGoals} ativas`,
+      change: summary.activeGoals > 0 ? `${summary.activeGoals} criadas` : "Nenhuma criada",
       icon: Target,
       color: "text-blue-600",
       bgColor: "bg-blue-50",
